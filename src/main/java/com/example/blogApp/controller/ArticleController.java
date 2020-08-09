@@ -1,6 +1,8 @@
 package com.example.blogApp.controller;
 
+import com.example.blogApp.dto.CommentDto;
 import com.example.blogApp.model.Article;
+import com.example.blogApp.model.Comment;
 import com.example.blogApp.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,5 +40,13 @@ public class ArticleController {
     @GetMapping(value = "v1/fetchAllArticle/{id}")
     public ResponseEntity<List<Article>> getArticlesUsingBlogId(@PathVariable Integer id) {
         return new  ResponseEntity<List<Article>>(articleService.fetchAllArticleOfBlog(id), HttpStatus.OK);
+    }
+    @PostMapping(value = "v1/addComment")
+    public ResponseEntity<String> addComment(@RequestBody Comment comment) {
+        return new ResponseEntity<String>(articleService.addComment(comment), HttpStatus.OK);
+    }
+    @GetMapping(value = "v1/getComment")
+    public ResponseEntity<List<CommentDto>> getComments() {
+        return new  ResponseEntity<List<CommentDto>>(articleService.getComment(), HttpStatus.OK);
     }
 }
