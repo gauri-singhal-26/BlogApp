@@ -41,12 +41,5 @@ public class ArticleController {
     public ResponseEntity<List<Article>> getArticlesUsingBlogId(@PathVariable Integer id) {
         return new  ResponseEntity<List<Article>>(articleService.fetchAllArticleOfBlog(id), HttpStatus.OK);
     }
-    @PostMapping(value = "v1/addComment")
-    public ResponseEntity<String> addComment(@RequestBody Comment comment) {
-        return new ResponseEntity<String>(articleService.addComment(comment), HttpStatus.OK);
-    }
-    @GetMapping(value = "v1/getComment")
-    public ResponseEntity<List<CommentDto>> getComments() {
-        return new  ResponseEntity<List<CommentDto>>(articleService.getComment(), HttpStatus.OK);
-    }
+
 }
